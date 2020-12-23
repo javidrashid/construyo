@@ -4,6 +4,7 @@ import Link from "next/link";
 // layout for page
 
 import Auth from "layouts/Auth.js";
+import LoginForm from "../../components/Forms/LoginForm";
 
 export default function Login() {
   return (
@@ -48,7 +49,7 @@ export default function Login() {
                 <div className="text-gray-500 text-center mb-3 font-bold">
                   <small>Or sign in with credentials</small>
                 </div>
-                <form>
+                <form style={{display:"none"}}>
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-gray-700 text-xs font-bold mb-2"
@@ -98,6 +99,7 @@ export default function Login() {
                     </button>
                   </div>
                 </form>
+                <LoginForm />
               </div>
             </div>
             <div className="flex flex-wrap mt-6 relative">

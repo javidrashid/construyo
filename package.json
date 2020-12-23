@@ -13,6 +13,7 @@
     "@zeit/next-sass": "1.0.1",
     "autoprefixer": "^10.0.4",
     "chart.js": "2.9.3",
+    "firebase": "^8.2.1",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
     "next": "9.5.3",
@@ -26,6 +27,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-google-maps": "9.4.5",
+    "react-hook-form": "^6.13.1",
     "react-scripts": "3.4.3",
     "tailwindcss": "1.8.10",
     "watch": "^1.0.2",
@@ -38,7 +40,7 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm run dev",
     "build:tailwind": "tailwind build assets/styles/index.css -o assets/styles/tailwind.css",
     "watch:css": "watch 'npm run build:tailwind'"
-    },
+  },
   "eslintConfig": {
     "extends": "react-app"
   },

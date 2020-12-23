@@ -4,6 +4,7 @@ import React from "react";
 
 import Auth from "layouts/Auth.js";
 
+import SignUpForm from 'components/Forms/SignUpForm'
 export default function Register() {
   return (
     <>
@@ -47,7 +48,8 @@ export default function Register() {
                 <div className="text-gray-500 text-center mb-3 font-bold">
                   <small>Or sign up with credentials</small>
                 </div>
-                <form>
+                <SignUpForm />
+                <form style={{display:"none"}}>
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-gray-700 text-xs font-bold mb-2"
