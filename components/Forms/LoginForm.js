@@ -3,10 +3,18 @@ const LoginData  = {
  email: "",
  password: "",
 }
+import { useRouter } from 'next/router';
+import { useAuth } from 'hooks/useAuth';
+
+
 const LoginForm = () => {
  const { register, errors, handleSubmit } = useForm();
-const onSubmit = (data) => {
-  console.log(data);
+ const auth = useAuth();
+ const router = useRouter();
+const onSubmit = (data) => { debugger;
+  return auth.signIn(data).then(() => {
+    router.push('/admin/tables');
+   });
  };
 return (
   <form onSubmit={handleSubmit(onSubmit)}>

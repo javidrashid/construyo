@@ -1,14 +1,20 @@
 import { useForm } from 'react-hook-form';
 
-const SignUpData = {
- name:  'test',
- email: 'string',
- password: 'string'
-}
+import { auth } from 'config/firebase';
+import { useAuth } from '../../hooks/useAuth';
+
+
+
+
+
 const SignUpForm = () => {
  const { register, errors, handleSubmit } = useForm();
-const onSubmit = (data) => {
-  console.log(data);
+ const auth2 = useAuth();
+ 
+ const onSubmit = (data) => {
+  return auth2.signUp(data).then((user) => {
+   console.log(user);
+  });
  };
 
  return (

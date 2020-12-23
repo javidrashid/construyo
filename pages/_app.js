@@ -10,6 +10,10 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/styles/tailwind.css";
 import "assets/styles/custom.css"
 
+
+import { AuthProvider } from 'hooks/useAuth';
+
+
 Router.events.on("routeChangeStart", (url) => {
   console.log(`Loading: ${url}`);
   document.body.classList.add("body-page-transition");
@@ -74,7 +78,9 @@ export default class MyApp extends App {
           <title>Notus NextJS by Creative Tim</title>
         </Head>
         <Layout>
+        <AuthProvider>
           <Component {...pageProps} />
+          </AuthProvider>
         </Layout>
       </React.Fragment>
     );
