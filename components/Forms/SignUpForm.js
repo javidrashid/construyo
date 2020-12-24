@@ -9,10 +9,10 @@ import { useAuth } from '../../hooks/useAuth';
 
 const SignUpForm = () => {
  const { register, errors, handleSubmit } = useForm();
- const auth2 = useAuth();
+ const auth = useAuth();
  
  const onSubmit = (data) => {
-  return auth2.signUp(data).then((user) => {
+  return auth.signUp(data).then((user) => {
    console.log(user);
   });
  };

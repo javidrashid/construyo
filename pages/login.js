@@ -4,7 +4,7 @@ import Link from "next/link";
 // layout for page
 
 import Auth from "layouts/Auth.js";
-import LoginForm from "../../components/Forms/LoginForm";
+import LoginForm from "components/Forms/LoginForm";
 
 export default function Login() {
   return (
@@ -113,7 +113,7 @@ export default function Login() {
                 </a>
               </div>
               <div className="w-1/2 text-right">
-                <Link href="/auth/register">
+                <Link href="/register">
                   <a href="#pablo" className="text-gray-300">
                     <small>Create new account</small>
                   </a>
