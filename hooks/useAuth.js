@@ -12,6 +12,22 @@ import { auth, db } from 'config/firebase';
 const authContext = createContext({ user: {} });
 const { Provider } = authContext;
 
+
+const createUser = (user) => {
+    return db
+        .collection('users')
+        .doc(user.uid)
+        .set(user)
+        .then(() => {
+            setUser(user);
+            return user;
+        })
+        .catch((error) => {
+            return { error };
+        });
+};
+
+
 export function AuthProvider(props) {
     const auth = useAuthProvider();
     return <Provider value={auth}>{props.children}</Provider>;
@@ -58,20 +74,8 @@ const useAuthProvider = () => {
       }, []);
 
 
-    const createUser = (user) => {
-        return db
-            .collection('users')
-            .doc(user.uid)
-            .set(user)
-            .then(() => {
-                setUser(user);
-                return user;
-            })
-            .catch((error) => {
-                return { error };
-            });
-    };
-    const signUp = ({ name, email, password }) => {
+
+    const signUp = ({ name, email, password }) => { debugger;
         return auth
             .createUserWithEmailAndPassword(email, password)
             .then((response) => {
@@ -82,7 +86,7 @@ const useAuthProvider = () => {
                 return { error };
             });
     };
-    const signIn = ({ email, password }) => {
+    const signIn = ({ email, password }) => { 
         return auth
          .signInWithEmailAndPassword(email, password)
          .then((response) => {

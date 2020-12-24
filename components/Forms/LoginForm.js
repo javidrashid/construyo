@@ -1,4 +1,8 @@
 import { useForm } from 'react-hook-form';
+
+import { useState } from 'react';
+
+
 const LoginData  = {
  email: "",
  password: "",
@@ -8,12 +12,17 @@ import { useAuth } from 'hooks/useAuth';
 
 
 const LoginForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState(null);
  const { register, errors, handleSubmit } = useForm();
  const auth = useAuth();
  const router = useRouter();
 const onSubmit = (data) => { debugger;
-  return auth.signIn(data).then(() => {
-    router.push('/admin/tables');
+  setIsLoading(true);
+  setError(null);
+  return auth.signIn(data).then((response) => {
+    setIsLoading(false);
+    response.error ? setError(response.error) : router.push('/dashboard');
    });
  };
 return (
@@ -74,6 +83,14 @@ return (
      )}
     </div>
    </div>
+
+   <h1>Test Error Section </h1>
+   {error?.message && (
+ <div className="mb-4 text-red-500 text-center border-dashed border border-red-600 p-2 rounded">
+  <span>{error.message}</span>
+ </div>
+)}
+
       <div className="mt-4">
     <span className="block w-full rounded-md shadow-sm">
      <button
