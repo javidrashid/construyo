@@ -17,12 +17,12 @@ const [error, setError] = useState(null);
  const { register, errors, handleSubmit } = useForm();
  const auth = useAuth();
  const router = useRouter();
-const onSubmit = (data) => { debugger;
+const onSubmit = (data) => {
   setIsLoading(true);
   setError(null);
-  return auth.signIn(data).then((response) => {
+  return auth.signIn(data).then((response) => { debugger;
     setIsLoading(false);
-    response.error ? setError(response.error) : router.push('/dashboard');
+    response.error ? setError(response.error)  : auth.user ? router.push('/tables') : router.push('/login')
    });
  };
 return (

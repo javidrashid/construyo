@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // import { useAuth } from 'hooks/useAuth';
 import { useRequireAuth } from 'hooks/useRequireAuth';
@@ -11,14 +11,37 @@ import CardTable from "components/Cards/CardTable.js";
 
 import Admin from "layouts/Admin.js";
 import DashBoardPage from "./dashboard";
+import LoginForm from "../components/Forms/LoginForm";
 
+import { useRouter } from 'next/router';
 export default function Tables() {
 
   const auth = useRequireAuth();
 
+  const router = useRouter();
+  // useEffect(() => {
+  //   console.log('This is useeffect call', auth)
+  //   if(auth.user === null ) 
+  //     router.push('/login')
+  // }, [])
+  
+  //if(!auth.user) return null;
+  
+
+  // auth.onAuthStateChanged(function(user) {
+  //   if (user) {
+  //     router.push('/tables')
+  //   } else {
+  //     // No user is signed in.
+  //     router.push('/login')
+  //   }
+  // });
+
+
   if (!auth.user) return null;
+
   return (
-    <>
+   
       <div className="flex flex-wrap mt-4">111
        
         <div className="w-full mb-12 px-4">
@@ -27,12 +50,14 @@ export default function Tables() {
         {`You are logged in with ${auth.user.email}`}
         </h2>
         <p className="mt-2 text-center text-md text-gray-600">
-          {`You are logged in with auth.usere.email`}
+          {`You are logged in with auth.user.email`}
         </p>
           <CardTable />
         </div>
         <div className="w-full mb-12 px-4">
           <CardTable color="dark" />
+
+          <LoginForm />
          
         </div>
         <p>Some Text Here  You are logged in as {auth.user.name}</p>
@@ -45,7 +70,7 @@ export default function Tables() {
 
 
       </div>
-    </>
+  
   );
 }
 

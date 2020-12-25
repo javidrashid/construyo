@@ -7,9 +7,13 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import HeaderStats from "components/Headers/HeaderStats.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
 
+import { AuthProvider } from 'hooks/useAuth';
+
 export default function Admin({ children }) {
+
   return (
     <>
+      <AuthProvider>
       <Sidebar />
       <div className="relative md:ml-64 bg-gray-200">
         <AdminNavbar />
@@ -20,6 +24,7 @@ export default function Admin({ children }) {
           <FooterAdmin />
         </div>
       </div>
+      </AuthProvider>
     </>
   );
 }
