@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 // import { useAuth } from 'hooks/useAuth';
 import { useAuth } from 'hooks/useAuth';
 
+import { db } from '../../config/firebase';
 // components
 
 import CardTable from "components/Cards/CardTable.js";
@@ -46,7 +47,6 @@ export default function Tables() {
 
   
 
-    
 
   return (
    
@@ -58,26 +58,14 @@ export default function Tables() {
         {`You are logged in with ${auth.user.email}`}
         </h2>
         <p className="mt-2 text-center text-md text-gray-600">
-          {`You are logged in with auth.user.email`}
+          {`You are logged in with ${auth.user.name}`}
         </p>
           <CardTable />
         </div>
         <div className="w-full mb-12 px-4">
           <CardTable color="dark" />
-
-          <LoginForm />
-         
-        </div>
-        <p>Some Text Here  You are logged in as {auth.user.name}</p>
-        <button style={{ border: "1px solid red", background: "indigo" }}
-          onClick={() => auth.signOut()}
-          className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
-        >
-          Sign out
-</button>
-
-
-      </div>
+       </div>
+       </div>
   
   );
 }
