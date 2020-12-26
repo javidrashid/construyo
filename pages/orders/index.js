@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 // import { useAuth } from 'hooks/useAuth';
-import { useRequireAuth } from 'hooks/useRequireAuth';
+import { useAuth } from 'hooks/useAuth';
 
 // components
 
@@ -10,35 +10,43 @@ import CardTable from "components/Cards/CardTable.js";
 // layout for page
 
 import Admin from "layouts/Admin.js";
-import DashBoardPage from "./dashboard";
-import LoginForm from "../components/Forms/LoginForm";
+import LoginForm from "components/Forms/LoginForm";
 
 import { useRouter } from 'next/router';
 export default function Tables() {
 
-  const auth = useRequireAuth();
+  const auth = useAuth();
 
   const router = useRouter();
+
+
   // useEffect(() => {
-  //   console.log('This is useeffect call', auth)
-  //   if(auth.user === null ) 
-  //     router.push('/login')
+  //   (async function() {
+  //     console.log('User is', auth);
+  //     if(!auth.user) {
+  //       router.push('/login')
+  //     }
+  //     else {
+  //       router.push('/tables')
+  //     }
+  //   })()
+    
   // }, [])
+
+
+
+  if (!auth.user)  {
+    return null;
+  }
+
+  if (auth.user)  {
+    Tables.layout = Admin;
+      //router.push('/login')
+  }
+
   
-  //if(!auth.user) return null;
-  
 
-  // auth.onAuthStateChanged(function(user) {
-  //   if (user) {
-  //     router.push('/tables')
-  //   } else {
-  //     // No user is signed in.
-  //     router.push('/login')
-  //   }
-  // });
-
-
-  if (!auth.user) return null;
+    
 
   return (
    
@@ -73,5 +81,6 @@ export default function Tables() {
   
   );
 }
+
 
 Tables.layout = Admin;

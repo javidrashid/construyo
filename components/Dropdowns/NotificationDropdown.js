@@ -42,7 +42,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Action
+          View Order
         </a>
         <a
           href="#pablo"
@@ -51,7 +51,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Another action
+          Edit This order
         </a>
         <a
           href="#pablo"
@@ -70,7 +70,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Seprated link
+          Delete this Order
         </a>
       </div>
     </>

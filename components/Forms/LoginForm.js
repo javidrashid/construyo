@@ -20,9 +20,9 @@ const [error, setError] = useState(null);
 const onSubmit = (data) => {
   setIsLoading(true);
   setError(null);
-  return auth.signIn(data).then((response) => { debugger;
+  return auth.signIn(data).then((response) => {
     setIsLoading(false);
-    response.error ? setError(response.error)  : auth.user ? router.push('/tables') : router.push('/login')
+    response.error ? setError(response.error) : router.push('/orders');
    });
  };
 return (

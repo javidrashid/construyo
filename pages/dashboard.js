@@ -1,7 +1,9 @@
-import { useAuth } from 'hooks/useAuth';
+// import { useAuth } from 'hooks/useAuth';
+import { useRequireAuth } from 'hooks/useRequireAuth';
 const DashBoardPage = () => { 
    
- const auth = useAuth();
+//  const auth = useAuth();
+const auth = useRequireAuth();
  console.log('Hello', auth)
  if (!auth.user) return null;
  return (

@@ -2,12 +2,15 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
+import {useAuth} from "../../hooks/useAuth"; 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const router = useRouter();
+  const auth = useAuth();
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-no-wrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -21,18 +24,17 @@ export default function Sidebar() {
             <i className="fas fa-bars"></i>
           </button>
           {/* Brand */}
-          <Link href="/">
+          <Link href="/orders/neworder">
             <a
-              href="#pablo"
-              className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
+              className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0 bg-indigo-600"
             >
-              Notus NextJS
+             Create a New Order
             </a>
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
-              <NotificationDropdown />
+              {/* <NotificationDropdown /> */}
             </li>
             <li className="inline-block relative">
               <UserDropdown />
@@ -54,7 +56,7 @@ export default function Sidebar() {
                       href="#pablo"
                       className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
                     >
-                      Notus NextJS
+                      Notus NextJS11
                     </a>
                   </Link>
                 </div>
@@ -84,7 +86,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Admin Layout Pages
+              Customers Dashboard
             </h6>
             {/* Navigation */}
 
@@ -132,7 +134,7 @@ export default function Sidebar() {
                           : "text-gray-400")
                       }
                     ></i>{" "}
-                    Settings
+                    Orders
                   </a>
                 </Link>
               </li>
@@ -156,7 +158,7 @@ export default function Sidebar() {
                           : "text-gray-400")
                       }
                     ></i>{" "}
-                    Tables
+                    Edit Orders
                   </a>
                 </Link>
               </li>
@@ -180,7 +182,7 @@ export default function Sidebar() {
                           : "text-gray-400")
                       }
                     ></i>{" "}
-                    Maps
+                    Delete Order
                   </a>
                 </Link>
               </li>
@@ -196,160 +198,22 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                <Link href="/auth/login">
+               
                   <a
                     href="#pablo"
                     className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                  >
-                    <i className="fas fa-fingerprint text-gray-500 mr-2 text-sm"></i>{" "}
-                    Login
-                  </a>
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link href="/auth/register">
-                  <a
-                    href="#pablo"
-                    className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
+                    onClick={() => auth.signOut()}
                   >
                     <i className="fas fa-clipboard-list text-gray-400 mr-2 text-sm"></i>{" "}
-                    Register
+                    Logout
                   </a>
-                </Link>
+               
               </li>
             </ul>
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              No Layout Pages
-            </h6>
-            {/* Navigation */}
-
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="items-center">
-                <Link href="/landing">
-                  <a
-                    href="#pablo"
-                    className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                  >
-                    <i className="fas fa-newspaper text-gray-500 mr-2 text-sm"></i>{" "}
-                    Landing Page
-                  </a>
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link href="/profile">
-                  <a
-                    href="#pablo"
-                    className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                  >
-                    <i className="fas fa-user-circle text-gray-500 mr-2 text-sm"></i>{" "}
-                    Profile Page
-                  </a>
-                </Link>
-              </li>
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Documentation
-            </h6>
-            {/* Navigation */}
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/colors/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fas fa-paint-brush mr-2 text-gray-400 text-base"></i>
-                  Styles
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-css3-alt mr-2 text-gray-400 text-base"></i>
-                  CSS Components
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-angular mr-2 text-gray-400 text-base"></i>
-                  Angular
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-js-square mr-2 text-gray-400 text-base"></i>
-                  Javascript
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-react mr-2 text-gray-400 text-base"></i>
-                  NextJS
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-react mr-2 text-gray-400 text-base"></i>
-                  React
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fas fa-link mr-2 text-gray-400 text-base"></i>
-                  Svelte
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus"
-                  target="_blank"
-                  className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-vuejs mr-2 text-gray-400 text-base"></i>
-                  VueJS
-                </a>
-              </li>
-            </ul>
+            
           </div>
         </div>
       </nav>

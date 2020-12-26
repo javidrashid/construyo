@@ -50,7 +50,7 @@ const UserDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Action
+          View Profile
         </a>
         <a
           href="#pablo"
@@ -59,7 +59,7 @@ const UserDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Another action
+          Edit Profile
         </a>
         <a
           href="#pablo"
@@ -68,7 +68,7 @@ const UserDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Something else here
+          Log Out
         </a>
         <div className="h-0 my-2 border border-solid border-gray-200" />
         <a
@@ -78,7 +78,7 @@ const UserDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Seprated link
+          Delete  Account
         </a>
       </div>
     </>

@@ -8,7 +8,7 @@ import {
 
 import { auth, db } from 'config/firebase';
 
-
+import {useRouter} from "next/router";
 const authContext = createContext({ user: {} });
 const { Provider } = authContext;
 
@@ -16,24 +16,18 @@ const { Provider } = authContext;
 
 
 export function AuthProvider(props) {
-   
     const auth = useAuthProvider();
-    return <Provider value={auth}>{props.children}</Provider>;
+        return <Provider value={auth}>{props.children}</Provider>;
 }
 export const useAuth = () => {
     return useContext(authContext);
 };
 
-
-
-
-
-
-
 // Provider hook that creates an auth object and handles it's state
 const useAuthProvider = () => {
     const [user, setUser] = useState(null);
-
+    const router = useRouter();
+    
     const getUserAdditionalData = (user) => {
         return db
             .collection('users')
@@ -45,7 +39,7 @@ const useAuthProvider = () => {
                 }
             });
     };
-    
+
     const handleAuthStateChanged = (user) => {
         setUser(user);
         if (user) {
@@ -104,7 +98,11 @@ const useAuthProvider = () => {
             });
     };
     const signOut = () => {
-        return auth.signOut().then(() => setUser(false));
+        alert('Calling Sign out');
+        return auth.signOut().then(() => {
+            setUser(false);
+            router.push('/login');
+        });
     };
 
     return {
