@@ -14,44 +14,22 @@ import Admin from "layouts/Admin.js";
 import LoginForm from "components/Forms/LoginForm";
 
 import { useRouter } from 'next/router';
-export default function Tables() {
-
+export default function Orders(props) {
+  console.log('Hello Orders props', props);
   const auth = useAuth();
 
   const router = useRouter();
-
-
-  // useEffect(() => {
-  //   (async function() {
-  //     console.log('User is', auth);
-  //     if(!auth.user) {
-  //       router.push('/login')
-  //     }
-  //     else {
-  //       router.push('/tables')
-  //     }
-  //   })()
-    
-  // }, [])
-
-
 
   if (!auth.user)  {
     return null;
   }
 
   if (auth.user)  {
-    Tables.layout = Admin;
+    Orders.layout = Admin;
       //router.push('/login')
   }
-
-  
-
-
   return (
-   
       <div className="flex flex-wrap mt-4">111
-       
         <div className="w-full mb-12 px-4">
           This is test
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -71,4 +49,4 @@ export default function Tables() {
 }
 
 
-Tables.layout = Admin;
+Orders.layout = Admin;

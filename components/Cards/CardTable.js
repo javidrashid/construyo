@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
-export default function CardTable({ color }) {
+export default function CardTable({ color , props}) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -128,7 +128,7 @@ export default function CardTable({ color }) {
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right">
-                  <TableDropdown />
+                  <TableDropdown id={elem.id} props =  {elem} />
                 </td>
               </tr>
               ))}

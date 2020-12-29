@@ -12,7 +12,7 @@ import {db} from '../config/firebase';
 
 
     const handleSubmit = (e) => {
-      debugger;
+      
       e.preventDefault();
 
       console.log({

@@ -1,8 +1,12 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
+import Link from 'next/link';
 
-const NotificationDropdown = () => {
+import { db } from '../../config/firebase';
+
+const NotificationDropdown = (props) => {
   // dropdown props
+  console.log('TableDropDown Props', props);
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
@@ -15,6 +19,14 @@ const NotificationDropdown = () => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  const deleteThisOrder = (e, id) => {
+    confirm('Sure') ? 
+    db.collection('orders').doc(id).delete().then(function() {
+      console.log("Document successfully deleted!");
+    })
+    : alert("Not Deleted");
+  }
   return (
     <>
       <a
@@ -35,6 +47,16 @@ const NotificationDropdown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
+       
+        <a
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+          }
+          onClick={(e) => e.preventDefault()}
+        >
+           <Link href="/orders/[:id]" as={'/orders/' + props.id}> View Order </Link>
+        </a>
+        
         <a
           href="#pablo"
           className={
@@ -42,23 +64,14 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          View Order
+           <Link href="/orders/edit/[:id]" as={'/orders/edit/' + props.id}> Edit This Order </Link>
         </a>
         <a
           href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
           }
-          onClick={(e) => e.preventDefault()}
-        >
-          Edit This Order
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-          }
-          onClick={(e) => e.preventDefault()}
+          onClick={(e, id) => deleteThisOrder(e, props.id)}
         >
           Delete This Order
         </a>

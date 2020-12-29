@@ -26,7 +26,7 @@ export default function Sidebar() {
           {/* Brand */}
           <Link href="/orders/neworder">
             <a
-              className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0 bg-indigo-600"
+              className="md:block md:pb-3 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-4 rounded text-center bg-indigo-600 text-white"
             >
              Create a New Order
             </a>
@@ -92,9 +92,8 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
-                <Link href="/admin/dashboard">
+                <Link href="/orders">
                   <a
-                    href="#pablo"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
@@ -116,9 +115,9 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/admin/settings">
+                <Link href="/orders">
                   <a
-                    href="#pablo"
+                   
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/settings") !== -1
@@ -140,9 +139,9 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/admin/tables">
+                <Link href="/edit">
                   <a
-                    href="#pablo"
+                    
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/tables") !== -1
@@ -164,9 +163,8 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/admin/maps">
+                <Link href="/delete">
                   <a
-                    href="#pablo"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/maps") !== -1
