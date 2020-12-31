@@ -14,7 +14,7 @@ export default function FooterAdmin() {
                   href="https://www.creative-tim.com?ref=nnjs-footer-admin"
                   className="text-gray-600 hover:text-gray-800 text-sm font-semibold py-1"
                 >
-                  Creative Tim
+                  Javid Lone
                 </a>
               </div>
             </div>
@@ -25,7 +25,7 @@ export default function FooterAdmin() {
                     href="https://www.creative-tim.com?ref=nnjs-footer-admin"
                     className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                   >
-                    Creative Tim
+                    Javid Lone
                   </a>
                 </li>
                 <li>
@@ -33,7 +33,7 @@ export default function FooterAdmin() {
                     href="https://www.creative-tim.com/presentation?ref=nnjs-footer-admin"
                     className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                   >
-                    About Us
+                   Footer Link 1
                   </a>
                 </li>
                 <li>
@@ -41,7 +41,7 @@ export default function FooterAdmin() {
                     href="http://blog.creative-tim.com?ref=nnjs-footer-admin"
                     className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                   >
-                    Blog
+                    Footer Link 2
                   </a>
                 </li>
                 <li>
@@ -49,7 +49,7 @@ export default function FooterAdmin() {
                     href="https://github.com/creativetimofficial/notus-nextjs/blob/master/LICENSE.md?ref=nnjs-footer-admin"
                     className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                   >
-                    MIT License
+                   Footer Link 3
                   </a>
                 </li>
               </ul>

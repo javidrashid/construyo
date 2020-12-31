@@ -24,13 +24,7 @@ export default function Sidebar() {
             <i className="fas fa-bars"></i>
           </button>
           {/* Brand */}
-          <Link href="/orders/neworder">
-            <a
-              className="md:block md:pb-3 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-4 rounded text-center bg-indigo-600 text-white"
-            >
-             Create a New Order
-            </a>
-          </Link>
+          
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
@@ -40,6 +34,7 @@ export default function Sidebar() {
               <UserDropdown />
             </li>
           </ul>
+          
           {/* Collapse */}
           <div
             className={
@@ -81,9 +76,10 @@ export default function Sidebar() {
                 />
               </div>
             </form>
-
+             <div className="logo"><img src={require("assets/logos/logo.png")} /></div>  
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
+            
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Customers Dashboard
@@ -139,7 +135,7 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/edit">
+                <Link href="/orders/edit">
                   <a
                     
                     className={
@@ -190,7 +186,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Auth Layout Pages
+              Admin  Actions
             </h6>
             {/* Navigation */}
 
@@ -211,10 +207,18 @@ export default function Sidebar() {
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
-            
+            <Link href="/orders/neworder">
+            <a
+              className="md:block md:pb-3 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-4 rounded text-center bg-indigo-600 text-white"
+            >
+             Create a New Order
+            </a>
+          </Link>
           </div>
         </div>
+
       </nav>
+      
     </>
   );
 }

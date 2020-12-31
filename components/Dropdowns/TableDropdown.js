@@ -33,9 +33,13 @@ const NotificationDropdown = (props) => {
         className="text-gray-600 py-1 px-3"
         href="#pablo"
         ref={btnDropdownRef}
-        onClick={(e) => {
+        onMouseEnter={(e) => {
           e.preventDefault();
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
+        }}
+        onMouseLeave={(e) => {
+          e.preventDefault();
+          dropdownPopoverShow ? openDropdownPopover() : closeDropdownPopover();
         }}
       >
         <i className="fas fa-ellipsis-v"></i>

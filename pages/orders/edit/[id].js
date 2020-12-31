@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useAuth } from 'hooks/useAuth';
+import { useRequireAuth } from 'hooks/useRequireAuth';
 
 import { db } from 'config/firebase';
 
@@ -18,9 +18,24 @@ import { OrderDetailsEditComponent } from "components/OrderDetailsEditComponent"
 
 
 const OrderEdit = () => {
+    const auth = useRequireAuth();
   const router = useRouter();
 
-  const {id} = router.query
+  const {id} = router.query;
+
+  if (!auth.user)  {
+    return null;
+  }
+
+  if (auth.user)  {
+    //Orders.layout = Admin;
+      //router.push('/login')
+      alert('You are an authorised user');
+  }
+  else {
+    alert('You are an an UNauthorised user');
+  }
+
   return (
     <>
   {/* <OrderDetailsComponent /> <br />< br/> <br />< br/> <br />< br/> <br />< br/> */}

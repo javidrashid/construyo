@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // import { useAuth } from 'hooks/useAuth';
-import { useAuth } from 'hooks/useAuth';
+import { useRequireAuth } from 'hooks/useRequireAuth';
 
 import { db } from '../../config/firebase';
 // components
@@ -16,7 +16,7 @@ import LoginForm from "components/Forms/LoginForm";
 import { useRouter } from 'next/router';
 export default function Orders(props) {
   console.log('Hello Orders props', props);
-  const auth = useAuth();
+  const auth = useRequireAuth();
 
   const router = useRouter();
 

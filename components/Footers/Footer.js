@@ -149,7 +149,7 @@ export default function Footer() {
                   href="https://www.creative-tim.com?ref=nnjs-footer"
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  Creative Tim
+                  Javid Lone
                 </a>
                 .
               </div>
