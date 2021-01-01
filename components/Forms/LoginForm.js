@@ -83,9 +83,7 @@ return (
      )}
     </div>
    </div>
-
-   <h1>Test Error Section </h1>
-   {error?.message && (
+  {error?.message && (
  <div className="mb-4 text-red-500 text-center border-dashed border border-red-600 p-2 rounded">
   <span>{error.message}</span>
  </div>

@@ -67,7 +67,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/presentation?ref=nnjs-footer"
+                        href="https://www.construyo.de/ueber-uns/"
                       >
                         About Us
                       </a>
@@ -75,25 +75,33 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://blog.creative-tim.com?ref=nnjs-footer"
+                        href="https://www.construyo.de/projekte/"
                       >
-                        Blog
+                        Credentials
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.github.com/creativetimofficial?ref=nnjs-footer"
+                        href="https://www.construyo.de/partner-werden/"
                       >
-                        Github
+                        Become a Partner
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/bootstrap-themes/free?ref=nnjs-footer"
+                        href="https://www.construyo.de/karriere/"
                       >
-                        Free Products
+                        Career
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                        href="https://www.construyo.de/ratgeber/"
+                      >
+                        Counselor
                       </a>
                     </li>
                   </ul>
@@ -106,33 +114,33 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://github.com/creativetimofficial/notus-nextjs/blob/master/LICENSE.md?ref=nnjs-footer"
+                        href="https://www.construyo.de/kontakt/"
                       >
-                        MIT License
+                       Contact
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/terms?ref=nnjs-footer"
+                        href="https://www.construyo.de/impressum/"
                       >
-                        Terms & Conditions
+                        Imprint
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/privacy?ref=nnjs-footer"
+                        href="https://www.construyo.de/agb/"
                       >
-                        Privacy Policy
+                        Conditions
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/contact-us?ref=nnjs-footer"
+                        href="https://www.construyo.de/datenschutz/"
                       >
-                        Contact Us
+                        Data Protection
                       </a>
                     </li>
                   </ul>
@@ -144,7 +152,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm text-gray-600 font-semibold py-1">
-                Copyright © {new Date().getFullYear()} Notus NextJS by{" "}
+                Copyright © {new Date().getFullYear()} Construyo by{" "}
                 <a
                   href="https://www.creative-tim.com?ref=nnjs-footer"
                   className="text-gray-600 hover:text-gray-900"

@@ -31,14 +31,7 @@ export default function Orders(props) {
   return (
       <div className="flex flex-wrap mt-4">111
         <div className="w-full mb-12 px-4">
-          This is test
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-        {`You are logged in with ${auth.user.email}`}
-        </h2>
-        <p className="mt-2 text-center text-md text-gray-600">
-          {`You are logged in with ${auth.user.name}`}
-        </p>
-          <CardTable />
+         <CardTable />
         </div>
         <div className="w-full mb-12 px-4">
           <CardTable color="dark" />

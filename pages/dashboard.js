@@ -4,7 +4,6 @@ const DashBoardPage = () => {
    
 //  const auth = useAuth();
 const auth = useRequireAuth();
- console.log('Hello', auth)
  if (!auth.user) return null;
  return (
   <div className="min-h-screen flex bg-gray-200">

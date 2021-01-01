@@ -33,10 +33,10 @@ export const OrderDetailsComponent = (props) => {
   return (
     <>
       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-    <div className="text-gray-500 text-center mb-3 font-bold"><small>Details of CUstomert with ID {id}</small></div>
+    <div className="text-gray-500 text-center mb-3 font-bold"><h1>Details of CUstomert with ID {id}</h1></div>
 
     
-    <div class="flex flex-wrap items-top mb-6" style={{border:"1px solid red"}}>
+    <div class="flex flex-wrap items-top mb-6" style={{border:"1px solid red" , display:"none"}}>
     <div class="w-full lg:w-6/12 px-4"><span
             class="block uppercase text-gray-600 text-sm font-semibold mb-2">Useful Links</span>
         <ul class="list-unstyled">

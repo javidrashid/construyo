@@ -14,7 +14,9 @@ import Admin from "layouts/Admin.js";
 import { useRouter } from 'next/router';
 import { OrderDetailsComponent } from "components/OrderDetailsComponent";
 
+import CardTable from "components/cards/CardTable";
 
+import OrderDetailsTable from "components/cards/OrderDetailsTable";
 
 
 const OrderDetails = () => {
@@ -24,9 +26,10 @@ const OrderDetails = () => {
   return (
     <>
   {/* <OrderDetailsComponent /> <br />< br/> <br />< br/> <br />< br/> <br />< br/> */}
-  <h1> Hello Inside ID FILE ID is {id} </h1> <br />< br/> <br />< br/> <br />< br/> <br />< br/>
- 
+    <CardTable color="dark" />
     <OrderDetailsComponent id={id}/>
+
+    <OrderDetailsTable color="dark"  data = {id}/>
 </ >
 );
   

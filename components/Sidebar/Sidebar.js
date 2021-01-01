@@ -135,7 +135,7 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/orders/edit">
+                <Link href="/orders">
                   <a
                     
                     className={
@@ -159,7 +159,7 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/delete">
+                <Link href="/orders">
                   <a
                     className={
                       "text-xs uppercase py-3 font-bold block " +
@@ -194,7 +194,7 @@ export default function Sidebar() {
               <li className="items-center">
                
                   <a
-                    href="#pablo"
+                    href="/"
                     className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                     onClick={() => auth.signOut()}
                   >

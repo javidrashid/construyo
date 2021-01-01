@@ -27,7 +27,7 @@ const IndexDropdown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        Demo Pages
+        Services
       </a>
       <div
         ref={popoverDropdownRef}
@@ -41,7 +41,7 @@ const IndexDropdown = () => {
             "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
           }
         >
-          Admin Layout
+          Construction
         </span>
         <Link href="/admin/dashboard">
           <a
@@ -50,7 +50,7 @@ const IndexDropdown = () => {
               "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
             }
           >
-            Dashboard
+            Building
           </a>
         </Link>
         <Link href="/admin/settings">
@@ -60,7 +60,7 @@ const IndexDropdown = () => {
               "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
             }
           >
-            Settings
+            Orders
           </a>
         </Link>
         <Link href="/admin/tables">
@@ -70,7 +70,7 @@ const IndexDropdown = () => {
               "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
             }
           >
-            Tables
+            BreakThrough
           </a>
         </Link>
         <Link href="/admin/maps">
@@ -80,7 +80,7 @@ const IndexDropdown = () => {
               "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
             }
           >
-            Maps
+            Settings
           </a>
         </Link>
         <div className="h-0 mx-4 my-2 border border-solid border-gray-200" />
@@ -89,7 +89,7 @@ const IndexDropdown = () => {
             "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
           }
         >
-          Auth Layout
+          Adminstration
         </span>
         <Link href="/auth/login">
           <a
@@ -111,34 +111,9 @@ const IndexDropdown = () => {
             Register
           </a>
         </Link>
-        <div className="h-0 mx-4 my-2 border border-solid border-gray-200" />
-        <span
-          className={
-            "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
-          }
-        >
-          No Layout
-        </span>
-        <Link href="/landing">
-          <a
-            href="#pablo"
-            className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-            }
-          >
-            Lading
-          </a>
-        </Link>
-        <Link href="/profile">
-          <a
-            href="#pablo"
-            className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-            }
-          >
-            Profile
-          </a>
-        </Link>
+       
+       
+        
       </div>
     </>
   );
