@@ -77,11 +77,11 @@ export default class MyApp extends App {
           />
           <title>Construyo Firebase Project</title>
         </Head>
+         <AuthProvider>
         <Layout>
-        <AuthProvider>
           <Component {...pageProps} />
-          </AuthProvider>
         </Layout>
+        </AuthProvider>
       </React.Fragment>
     );
   }

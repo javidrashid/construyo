@@ -39,8 +39,10 @@ export const OrderDetailsEditComponent = (props) => {
         const upDateOrders = (e) => {
                 e.preventDefault();
                 db.collection("orders").doc(id).update({ title, bookingdate, address, customer }).then(function () {
-                        console.log('Update successfull');
+                        console.log('Update successfull, sending you to the dashboard page...');
+
                 })
+                router.push('/orders');
         }
 
         const cancelAndReturnToOrders = (e) => {
@@ -49,26 +51,10 @@ export const OrderDetailsEditComponent = (props) => {
                 router.push('/orders');
 
         }
-
-        const updateTitle = (e) => {
-                console.log('Hello', e.target.value);
-
-                e.persist();
-
-                let value = e.target.value;
-
-                // this.setState(prevState => ({
-                //         item: { ...prevState.item, [e.target.name]: value }
-                // }))
-                setTitle(value);
-
-
-
-        }
         return (
                 <>
                         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                                <div className="text-gray-500 text-center mb-3 font-bold"><small>Details of CUstomert with ID {id}</small></div>
+                                <div className="text-gray-500 text-center mb-3 font-bold"><small>11Details of CUstomert with ID {id}</small></div>
 
 
                                 <div className="flex flex-wrap items-top mb-6">

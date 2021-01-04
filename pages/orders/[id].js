@@ -19,35 +19,46 @@ import CardTable from "components/cards/CardTable";
 import OrderDetailsTable from "components/cards/OrderDetailsTable";
 
 
-const OrderDetails = () => {
+const OrderDetails = () => { 
   const router = useRouter();
-
-  const {id} = router.query
+  const [darkVersion, setDarkVersion] = useState(false);
+  const { id } = router.query;
+  const changeTheme = (e) => { 
+    if (e.target.checked) {
+      setDarkVersion(true)
+    }
+    else {
+      setDarkVersion(false)
+    }
+  }
   return (
     <>
-  {/* <OrderDetailsComponent /> <br />< br/> <br />< br/> <br />< br/> <br />< br/> */}
-    <CardTable color="dark" />
-    <OrderDetailsComponent id={id}/>
+      <div className="flex items-center justify-right w-full mb-24 flex-row-reverse">
+        <label
+          htmlFor="toogleA"
+          className="flex items-center cursor-pointer"
+        >
+          <div className="relative">
+            <input id="toogleA" type="checkbox" className="hidden" onChange ={(e) => changeTheme(e)} />
+            <div
+              className="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"
+            ></div>
+            <div
+              className="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"
+            ></div>
+          </div>
+          <div
+            className="ml-3 text-gray-700 font-medium"
+          >
+            Switch to { darkVersion ? 'Light Mode' : 'Dark Mode'}
+    </div>
+        </label>
+      </div>
+      {darkVersion ? <OrderDetailsTable color="dark" data={id} /> : <OrderDetailsTable data={id} />}
+    </ >
+  );
 
-    <OrderDetailsTable color="dark"  data = {id}/>
-</ >
-);
-  
 }
-
-// export const getServerSideProps = async ({ query }) => { 
-//   const content = []
-//   await db
-//     .collection('orders')
-//     .doc(query.id)
-//     .get()
-//     .then(result => {
-//       content.push(result)
-//     });
-//     return content;
-// }
-
-
 export default OrderDetails;
 
 

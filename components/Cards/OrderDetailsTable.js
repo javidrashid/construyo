@@ -1,4 +1,5 @@
 import React , { useState, useEffect } from "react";
+import Link from 'next/link';
 
 import { db } from "../../config/firebase";
 import PropTypes from "prop-types";
@@ -9,7 +10,7 @@ import { useRouter } from 'next/router';
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
 export default function OrderDetailsTable({ color , props}) {
-
+ console.log('My props', props);
 
 
   const router = useRouter();
@@ -33,6 +34,19 @@ export default function OrderDetailsTable({ color , props}) {
 
   }, [])
 
+  const updateOrder = (e) => {
+    console.log('Fired updateOrder', e);
+    router.push(`/orders/edit/${id}`)
+
+  }
+  const deleteThisOrder = (e) => { debugger;
+    console.log('Fired updateOrder', e);
+    db.collection('orders').doc(id).delete().then(function() {
+      console.log("Document successfully deleted!");
+    })
+    router.push(`/orders/`);
+
+  }
 
 
 
@@ -53,8 +67,8 @@ export default function OrderDetailsTable({ color , props}) {
                   (color === "light" ? "text-gray-800" : "text-white")
                 }
               >
-                Card Tables 123
-              </h3>
+                Card Tables 
+                              </h3>
             </div>
           </div>
         </div>
@@ -101,7 +115,7 @@ export default function OrderDetailsTable({ color , props}) {
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
                 >
-                  Customer22
+                  Customer222
                 </th>
                 <th
                   className={
@@ -111,7 +125,7 @@ export default function OrderDetailsTable({ color , props}) {
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
                 >
-                  Update
+                  Update This Order
                 </th>
                
                 <th
@@ -121,7 +135,7 @@ export default function OrderDetailsTable({ color , props}) {
                       ? "bg-gray-100 text-gray-600 border-gray-200"
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
-                >Delete</th>
+                >Delete This Order</th>
               </tr>
             </thead>
             <tbody>
@@ -149,14 +163,12 @@ export default function OrderDetailsTable({ color , props}) {
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                <button className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1" type="button" style={{"transition": "all .15s ease"}}>
+                <button  className="bg-green-500 text-white active:bg-green-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1" type="button" style={{"transition": "all .15s ease"}} onClick={(e) => updateOrder(e)}>
   Update
 </button>
                 </td>
-
-
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                <button className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1" type="button" style={{"transition": "all .15s ease"}}>
+                <button className="bg-red-500 text-white active:bg-red-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1" type="button" style={{"transition": "all .15s ease"}} onClick={(e) => deleteThisOrder(e)}>
   Delete
 </button>
                 </td>
