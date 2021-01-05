@@ -12,7 +12,7 @@ export default function Tables() {
 
   return (
     <>
-      <div className="flex flex-wrap mt-4">111
+      <div className="flex flex-wrap mt-4">
       </div>
       <NewOrder />
     </>

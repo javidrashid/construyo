@@ -2,7 +2,6 @@ import React , { useState, useEffect } from "react";
 
 import { db } from "../../config/firebase";
 import PropTypes from "prop-types";
-
 // components
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
@@ -13,16 +12,19 @@ export default function CardTable({ color , props}) {
   useEffect(() => {
     db
       .collection('orders')
-      .onSnapshot(snap => {
+      .onSnapshot(snap => { 
         const orders = snap.docs.map(order => ({
           id: order.id,
-          ...order.data()
+          title: order.data().title,
+          address : order.data().address,
+          bookingdate : order.data().bookingdate,
+          customer : order.data().customer
         }));
         setOrders(orders);
       });
   }, []);
 
-  console.log('orders are' , orders);
+  console.log('orders are 1' , orders);
 
 
   return (
@@ -118,7 +120,7 @@ export default function CardTable({ color , props}) {
                   </span>
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {elem.bookingdate}
+                {elem.bookingdate }
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <i className="fas fa-circle text-orange-500 mr-2"></i> {elem.address} 222

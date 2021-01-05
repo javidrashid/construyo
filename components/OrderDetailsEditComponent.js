@@ -10,21 +10,19 @@ import { useRouter } from "next/router";
 export const OrderDetailsEditComponent = (props) => {
         const router = useRouter();
         const { id } = router.query;
-
         const [title, setTitle] = useState('');
         const [bookingdate, setBookingDate] = useState('');
         const [address, setAddress] = useState('');
         const [customer, setCustomer] = useState('');
 
-        const [newtitle, setNewtitle] = useState('');
         var docRef = db.collection("orders").doc(id);
 
         useEffect(() => {
-                docRef.get().then(function (doc) {
-                        if (doc.exists) {
+                docRef.get().then(function (doc) { 
+                        if (doc.exists) { 
                                 console.log("Document data:", doc.data());
                                 setTitle(doc.data().title)
-                                setBookingDate(doc.data().bookingdate)
+                                setBookingDate(doc.data().bookingdate),
                                 setAddress(doc.data().address)
                                 setCustomer(doc.data().customer)
                         } else {
@@ -54,7 +52,7 @@ export const OrderDetailsEditComponent = (props) => {
         return (
                 <>
                         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                                <div className="text-gray-500 text-center mb-3 font-bold"><small>11Details of CUstomert with ID {id}</small></div>
+                                <div className="bg-gray-500 text-center mb-3 font-bold">Details of CUstomert with ID {id}</div>
 
 
                                 <div className="flex flex-wrap items-top mb-6">
@@ -86,8 +84,6 @@ export const OrderDetailsEditComponent = (props) => {
                                                                 <input id="customer" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 shadow-sm" type="text" name="customer" value={customer} onChange={(e) => setCustomer(e.target.value)} />
 
                                                         </li>
-
-
                                                 </ul>
 
                                         </div>

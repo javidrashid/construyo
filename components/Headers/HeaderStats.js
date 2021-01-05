@@ -16,8 +16,8 @@ export default function HeaderStats() {
           <div>
             {/* Card stats */}
             <div className="flex flex-wrap text-white font-semibold text-4xl">
-              <h1 className="">Welcome  {auth.user.name}</h1> < hr />
-              <p>You are logged in with  {auth.user.email} </p>
+              <h1 className="">Welcome  <span className="text-green-700">{auth.user.name}</span></h1> < hr />
+              <p>You are logged in with  <span className="text-green-700">{auth.user.email}</span> </p>
             </div>
           </div>
         </div>

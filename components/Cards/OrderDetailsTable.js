@@ -39,7 +39,7 @@ export default function OrderDetailsTable({ color , props}) {
     router.push(`/orders/edit/${id}`)
 
   }
-  const deleteThisOrder = (e) => { debugger;
+  const deleteThisOrder = (e) => {
     console.log('Fired updateOrder', e);
     db.collection('orders').doc(id).delete().then(function() {
       console.log("Document successfully deleted!");
@@ -115,7 +115,7 @@ export default function OrderDetailsTable({ color , props}) {
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
                 >
-                  Customer222
+                  Customer
                 </th>
                 <th
                   className={
@@ -156,7 +156,7 @@ export default function OrderDetailsTable({ color , props}) {
                 {orderDetails.bookingdate}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> {orderDetails.address} 222
+                  <i className="fas fa-circle text-orange-500 mr-2"></i> {orderDetails.address} 
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 {orderDetails.customer}
