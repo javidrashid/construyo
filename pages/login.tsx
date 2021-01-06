@@ -6,13 +6,13 @@ import Link from "next/link";
 import Auth from "layouts/Auth";
 import LoginForm from "components/Forms/LoginForm";
 import IndexNavbar from "components/Navbars/IndexNavbar";
-import { auth, google_auth } from "../config/firebase";
+import { auth, github_auth, google_auth } from "../config/firebase";
 import { useRouter } from "next/router";
 
 
 export default function Login() {
   const router = useRouter();
-  const handleSignIn = (e) => {
+  const handleSignInWithGoogle = (e) => {
     alert('ggg');
     var provider = google_auth.addScope('https://www.googleapis.com/auth/contacts.readonly');
     auth.signInWithPopup(provider).then( () => {
@@ -20,12 +20,18 @@ export default function Login() {
       router.push('/orders')
     })
     .catch(err => {
-      alert('OOps something went wrong check your console');
        console.log(err);
     })
-
   }
 
+  const handleSignInWithGithub = (e) => {
+    return auth.signInWithPopup(github_auth).then(() => {
+      router.push('/orders')
+    })
+    .catch(() => {
+      alert('Error Signing in with Github')
+    })
+  }
   return (
     <>
      <IndexNavbar  />
@@ -43,6 +49,7 @@ export default function Login() {
                   <button
                     className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
+                    onClick={(e) => handleSignInWithGithub(e)}
                   >
                     <img
                       alt="..."
@@ -54,7 +61,7 @@ export default function Login() {
                   <button
                     className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => handleSignIn()}
+                    onClick={(e) => handleSignInWithGoogle(e)}
                   >
                     <img
                       alt="..."

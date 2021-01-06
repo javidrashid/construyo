@@ -20,7 +20,7 @@ const NotificationDropdown = (props) => {
     setDropdownPopoverShow(false);
   };
 
-  const deleteThisOrder = (e, id) => {
+  const deleteThisOrder = (e , id) => {
     confirm('Sure') ? 
     db.collection('orders').doc(id).delete().then(function() {
       console.log("Document successfully deleted!");
@@ -51,34 +51,36 @@ const NotificationDropdown = (props) => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-       
+        <Link href="/orders/[:id]" as={'/orders/' + props.id}>
         <a
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
           }
-          onClick={(e) => e.preventDefault()}
-        >
-           <Link href="/orders/[:id]" as={'/orders/' + props.id}> View Order </Link>
-        </a>
         
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-          }
-          onClick={(e) => e.preventDefault()}
         >
-           <Link href="/orders/edit/[:id]" as={'/orders/edit/' + props.id}> Edit This Order </Link>
+           View Order 
         </a>
+        </Link>
+        <Link href="/orders/edit/[:id]" as={'/orders/edit/' + props.id}>
         <a
-          href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
           }
-          onClick={(e, id) => deleteThisOrder(e, props.id)}
+          
+        >
+            Edit This Order
+        </a>
+        </Link>
+        <Link href="#">
+        <a
+        className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+          }
+          onClick={(e) => deleteThisOrder(e, props.id)}
         >
           Delete This Order
         </a>
+        </Link>
       </div>
     </>
   );
