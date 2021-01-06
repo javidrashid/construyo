@@ -12,8 +12,18 @@ import { useRouter } from "next/router";
 
 export default function Login() {
   const router = useRouter();
-  const handleSignIn = () => {
-    console.log('Google Auth to be Implemented');
+  const handleSignIn = (e) => {
+    alert('ggg');
+    var provider = google_auth.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    auth.signInWithPopup(provider).then( () => {
+      alert('You are signed In');
+      router.push('/orders')
+    })
+    .catch(err => {
+      alert('OOps something went wrong check your console');
+       console.log(err);
+    })
+
   }
 
   return (
