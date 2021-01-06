@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
+import IndexNavbar from "components/Navbars/IndexNavbar";
 import Login from "../pages/login";
-import Footer from "components/Footers/Footer.js";
+import Footer from "components/Footers/Footer";
 
 export default function Index() {
   return (
@@ -19,9 +19,7 @@ export default function Index() {
           >
              <Login />
           </div>
-        
-         
-        </section>
+      </section>
      
       <Footer />
     </>

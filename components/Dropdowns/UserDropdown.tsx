@@ -1,48 +1,41 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
-import Link from 'next/link';
+import { auth } from "../../config/firebase";
 
-import { db } from '../../config/firebase';
-
-const NotificationDropdown = (props) => {
+const UserDropdown = () => {
   // dropdown props
-  console.log('TableDropDown Props', props);
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "left-start",
+      placement: "bottom-start",
     });
     setDropdownPopoverShow(true);
   };
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
-
-  const deleteThisOrder = (e, id) => {
-    confirm('Sure') ? 
-    db.collection('orders').doc(id).delete().then(function() {
-      console.log("Document successfully deleted!");
-    })
-    : alert("Not Deleted");
-  }
   return (
     <>
       <a
-        className="text-gray-600 py-1 px-3"
+        className="text-gray-600 block"
         href="#pablo"
         ref={btnDropdownRef}
-        onMouseEnter={(e) => {
+        onClick={(e) => {
           e.preventDefault();
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
-        onMouseLeave={(e) => {
-          e.preventDefault();
-          dropdownPopoverShow ? openDropdownPopover() : closeDropdownPopover();
-        }}
       >
-        <i className="fas fa-ellipsis-v"></i>
+        <div className="items-center flex">
+          <span className="w-12 h-12 text-sm text-white bg-gray-300 inline-flex items-center justify-center rounded-full">
+            <img
+              alt="..."
+              className="w-full rounded-full align-middle border-none shadow-lg"
+              src={require("assets/img/team-1-800x800.jpg")}
+            />
+          </span>
+        </div>
       </a>
       <div
         ref={popoverDropdownRef}
@@ -51,37 +44,46 @@ const NotificationDropdown = (props) => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-       
         <a
+          href="#"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
           }
           onClick={(e) => e.preventDefault()}
         >
-           <Link href="/orders/[:id]" as={'/orders/' + props.id}> View Order </Link>
-        </a>
-        
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-           <Link href="/orders/edit/[:id]" as={'/orders/edit/' + props.id}> Edit This Order </Link>
+          View Profile (NA)
         </a>
         <a
           href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
           }
-          onClick={(e, id) => deleteThisOrder(e, props.id)}
+          onClick={(e) => e.preventDefault()}
         >
-          Delete This Order
+          Edit Profile (NA)
+        </a>
+        <a
+          href="/"
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+          }
+          onClick={(e) => auth.signOut()}
+        >
+          Log Out
+        </a>
+        <div className="h-0 my-2 border border-solid border-gray-200" />
+        <a
+          href="#"
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+          }
+          onClick={(e) => e.preventDefault()}
+        >
+          Delete  Account (NA)
         </a>
       </div>
     </>
   );
 };
 
-export default NotificationDropdown;
+export default UserDropdown;

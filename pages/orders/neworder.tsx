@@ -4,7 +4,7 @@ import { useAuth } from 'hooks/useAuth';
 
 // layout for page
 
-import Admin from "layouts/Admin.js";
+import Admin from "layouts/Admin";
 
 import { useRouter } from 'next/router';
 import NewOrder from "../../components/NewOrder";

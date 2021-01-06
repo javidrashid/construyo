@@ -8,7 +8,7 @@ import { db } from 'config/firebase';
 
 // layout for page
 
-import Admin from "layouts/Admin.js";
+import Admin from "layouts/Admin";
 
 
 import { useRouter } from 'next/router';

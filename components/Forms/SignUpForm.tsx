@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 
 import { auth } from 'config/firebase';
 import { useAuth } from '../../hooks/useAuth';
+import { useRouter } from 'next/router';
 
 
 
@@ -10,10 +11,15 @@ import { useAuth } from '../../hooks/useAuth';
 const SignUpForm = () => {
  const { register, errors, handleSubmit } = useForm();
  const auth = useAuth();
+ const router = useRouter();
  
  const onSubmit = (data) => {
   return auth.signUp(data).then((user) => {
+     debugger;
    console.log(user);
+   if(user.uid !== "")  {
+      router.push('/login')
+   }
   });
  };
 
@@ -35,9 +41,9 @@ const SignUpForm = () => {
         required: 'Please enter an name',      
        })}
       />
-      {errors.password && (
+      {errors.name && (
        <div className="mt-2 text-xs text-red-600">
-        {errors.password.message}
+        {errors.name.message}
        </div>
       )}
      </div>
@@ -103,7 +109,7 @@ const SignUpForm = () => {
         type="submit"
         className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
        >
-        Sign up11
+        Sign up
        </button>
       </span>
      </div>

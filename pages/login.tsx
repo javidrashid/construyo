@@ -3,12 +3,22 @@ import Link from "next/link";
 
 // layout for page
 
-import Auth from "layouts/Auth.js";
+import Auth from "layouts/Auth";
 import LoginForm from "components/Forms/LoginForm";
+import IndexNavbar from "components/Navbars/IndexNavbar";
+import { auth, google_auth } from "../config/firebase";
+import { useRouter } from "next/router";
+
 
 export default function Login() {
+  const router = useRouter();
+  const handleSignIn = () => {
+    console.log('Google Auth to be Implemented');
+  }
+
   return (
     <>
+     <IndexNavbar  />
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
@@ -34,6 +44,7 @@ export default function Login() {
                   <button
                     className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
+                    onClick={() => handleSignIn()}
                   >
                     <img
                       alt="..."
@@ -103,18 +114,10 @@ export default function Login() {
               </div>
             </div>
             <div className="flex flex-wrap mt-6 relative">
+              
               <div className="w-1/2">
-                <a
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-gray-300"
-                >
-                  <small>Forgot password?</small>
-                </a>
-              </div>
-              <div className="w-1/2 text-right">
                 <Link href="/register">
-                  <a href="#pablo" className="text-gray-300">
+                  <a href="#" className="text-gray-300">
                     <small>Create new account</small>
                   </a>
                 </Link>

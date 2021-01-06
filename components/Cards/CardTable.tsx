@@ -1,53 +1,30 @@
 import React , { useState, useEffect } from "react";
-import Link from 'next/link';
 
 import { db } from "../../config/firebase";
 import PropTypes from "prop-types";
-
-import { useRouter } from 'next/router';
 // components
 
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import TableDropdown from "components/Dropdowns/TableDropdown";
 
-export default function OrderDetailsTable({ color , props}) {
- console.log('My props', props);
-
-
-  const router = useRouter();
-  const { id } = router.query;
-
-  const [orderDetails, setOrderDetails] = useState('');
-  var docRef = db.collection("orders").doc(id);
+export default function CardTable({ color , props}) {
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    docRef.get().then(function (doc) {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-        setOrderDetails(doc.data())
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    }).catch(function (error) {
-      console.log("Error getting document:", error);
-    });
+    db
+      .collection('orders')
+      .onSnapshot(snap => { 
+        const orders = snap.docs.map(order => ({
+          id: order.id,
+          title: order.data().title,
+          address : order.data().address,
+          bookingdate : order.data().bookingdate,
+          customer : order.data().customer
+        }));
+        setOrders(orders);
+      });
+  }, []);
 
-  }, [])
-
-  const updateOrder = (e) => {
-    console.log('Fired updateOrder', e);
-    router.push(`/orders/edit/${id}`)
-
-  }
-  const deleteThisOrder = (e) => {
-    console.log('Fired updateOrder', e);
-    db.collection('orders').doc(id).delete().then(function() {
-      console.log("Document successfully deleted!");
-    })
-    router.push(`/orders/`);
-
-  }
-
+  console.log('orders are 1' , orders);
 
 
   return (
@@ -67,8 +44,8 @@ export default function OrderDetailsTable({ color , props}) {
                   (color === "light" ? "text-gray-800" : "text-white")
                 }
               >
-                Card Tables 
-                              </h3>
+                Construyo Orders
+              </h3>
             </div>
           </div>
         </div>
@@ -85,7 +62,7 @@ export default function OrderDetailsTable({ color , props}) {
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
                 >
-                  Title 1
+                  Title
                 </th>
                 <th
                   className={
@@ -105,16 +82,6 @@ export default function OrderDetailsTable({ color , props}) {
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
                 >
-                  Address11
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-gray-100 text-gray-600 border-gray-200"
-                      : "bg-gray-700 text-gray-300 border-gray-600")
-                  }
-                >
                   Customer
                 </th>
                 <th
@@ -125,7 +92,7 @@ export default function OrderDetailsTable({ color , props}) {
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
                 >
-                  Update This Order
+                  Address
                 </th>
                
                 <th
@@ -135,12 +102,12 @@ export default function OrderDetailsTable({ color , props}) {
                       ? "bg-gray-100 text-gray-600 border-gray-200"
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
-                >Delete This Order</th>
+                ></th>
               </tr>
             </thead>
             <tbody>
-              
-                <tr>
+              {orders.map(elem => (
+                <tr key={elem.id}>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
              
                   <span
@@ -149,31 +116,24 @@ export default function OrderDetailsTable({ color , props}) {
                       +(color === "light" ? "text-gray-700" : "text-white")
                     }
                   >
-                    {orderDetails.title}
+                    {elem.title}
                   </span>
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {orderDetails.bookingdate}
+                {elem.bookingdate }
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> {orderDetails.address} 
+                  <i className="fas fa-circle text-orange-500 mr-2"></i> {elem.address} 222
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {orderDetails.customer}
+                {elem.customer}
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                <button  className="bg-green-500 text-white active:bg-green-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1" type="button" style={{"transition": "all .15s ease"}} onClick={(e) => updateOrder(e)}>
-  Update
-</button>
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                <button className="bg-red-500 text-white active:bg-red-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1" type="button" style={{"transition": "all .15s ease"}} onClick={(e) => deleteThisOrder(e)}>
-  Delete
-</button>
+                  <TableDropdown id={elem.id} props =  {elem} />
                 </td>
               </tr>
-           
+              ))}
               
             </tbody>
           </table>
@@ -183,10 +143,10 @@ export default function OrderDetailsTable({ color , props}) {
   );
 }
 
-OrderDetailsTable.defaultProps = {
+CardTable.defaultProps = {
   color: "light",
 };
 
-OrderDetailsTable.propTypes = {
+CardTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

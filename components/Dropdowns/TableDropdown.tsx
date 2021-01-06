@@ -1,40 +1,48 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
+import Link from 'next/link';
 
-const UserDropdown = () => {
+import { db } from '../../config/firebase';
+
+const NotificationDropdown = (props) => {
   // dropdown props
+  console.log('TableDropDown Props', props);
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-start",
+      placement: "left-start",
     });
     setDropdownPopoverShow(true);
   };
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  const deleteThisOrder = (e, id) => {
+    confirm('Sure') ? 
+    db.collection('orders').doc(id).delete().then(function() {
+      console.log("Document successfully deleted!");
+    })
+    : alert("Not Deleted");
+  }
   return (
     <>
       <a
-        className="text-gray-600 block"
-        href="#pablo"
+        className="text-gray-600 py-1 px-3"
+        href="#"
         ref={btnDropdownRef}
-        onClick={(e) => {
+        onMouseEnter={(e) => {
           e.preventDefault();
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
+        onMouseLeave={(e) => {
+          e.preventDefault();
+          dropdownPopoverShow ? openDropdownPopover() : closeDropdownPopover();
+        }}
       >
-        <div className="items-center flex">
-          <span className="w-12 h-12 text-sm text-white bg-gray-300 inline-flex items-center justify-center rounded-full">
-            <img
-              alt="..."
-              className="w-full rounded-full align-middle border-none shadow-lg"
-              src={require("assets/img/team-1-800x800.jpg")}
-            />
-          </span>
-        </div>
+        <i className="fas fa-ellipsis-v"></i>
       </a>
       <div
         ref={popoverDropdownRef}
@@ -43,6 +51,16 @@ const UserDropdown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
+       
+        <a
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+          }
+          onClick={(e) => e.preventDefault()}
+        >
+           <Link href="/orders/[:id]" as={'/orders/' + props.id}> View Order </Link>
+        </a>
+        
         <a
           href="#pablo"
           className={
@@ -50,39 +68,20 @@ const UserDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          View Profile
+           <Link href="/orders/edit/[:id]" as={'/orders/edit/' + props.id}> Edit This Order </Link>
         </a>
         <a
           href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={(e, id) => deleteThisOrder(e, props.id)}
         >
-          Edit Profile
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Log Out
-        </a>
-        <div className="h-0 my-2 border border-solid border-gray-200" />
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Delete  Account
+          Delete This Order
         </a>
       </div>
     </>
   );
 };
 
-export default UserDropdown;
+export default NotificationDropdown;

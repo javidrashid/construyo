@@ -2,29 +2,50 @@ import React , { useState, useEffect } from "react";
 
 import { db } from "../../config/firebase";
 import PropTypes from "prop-types";
-// components
 
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import { useRouter } from 'next/router';
 
-export default function CardTable({ color , props}) {
-  const [orders, setOrders] = useState([]);
+
+
+export default function OrderDetailsTable({ color , props}) {
+ console.log('My props', props);
+
+
+  const router = useRouter();
+  const { id } = router.query;
+
+  const [orderDetails, setOrderDetails] = useState('');
+  var docRef = db.collection("orders").doc(id);
 
   useEffect(() => {
-    db
-      .collection('orders')
-      .onSnapshot(snap => { 
-        const orders = snap.docs.map(order => ({
-          id: order.id,
-          title: order.data().title,
-          address : order.data().address,
-          bookingdate : order.data().bookingdate,
-          customer : order.data().customer
-        }));
-        setOrders(orders);
-      });
-  }, []);
+    docRef.get().then(function (doc) {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        setOrderDetails(doc.data())
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }).catch(function (error) {
+      console.log("Error getting document:", error);
+    });
 
-  console.log('orders are 1' , orders);
+  }, [])
+
+  const updateOrder = (e) => {
+    console.log('Fired updateOrder', e);
+    router.push(`/orders/edit/${id}`)
+
+  }
+  const deleteThisOrder = (e) => {
+    console.log('Fired updateOrder', e);
+    db.collection('orders').doc(id).delete().then(function() {
+      console.log("Document successfully deleted!");
+    })
+    router.push(`/orders/`);
+
+  }
+
 
 
   return (
@@ -44,8 +65,8 @@ export default function CardTable({ color , props}) {
                   (color === "light" ? "text-gray-800" : "text-white")
                 }
               >
-                Card Tables
-              </h3>
+                Construyo Orders
+                              </h3>
             </div>
           </div>
         </div>
@@ -82,6 +103,16 @@ export default function CardTable({ color , props}) {
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
                 >
+                  Address
+                </th>
+                <th
+                  className={
+                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
+                    (color === "light"
+                      ? "bg-gray-100 text-gray-600 border-gray-200"
+                      : "bg-gray-700 text-gray-300 border-gray-600")
+                  }
+                >
                   Customer
                 </th>
                 <th
@@ -92,7 +123,7 @@ export default function CardTable({ color , props}) {
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
                 >
-                  Address
+                  Update This Order
                 </th>
                
                 <th
@@ -102,38 +133,46 @@ export default function CardTable({ color , props}) {
                       ? "bg-gray-100 text-gray-600 border-gray-200"
                       : "bg-gray-700 text-gray-300 border-gray-600")
                   }
-                ></th>
+                >Delete This Order</th>
               </tr>
             </thead>
             <tbody>
-              {orders.map(elem => (
+              
                 <tr>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
-             
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                  
                   <span
                     className={
                       "ml-3 font-bold " +
                       +(color === "light" ? "text-gray-700" : "text-white")
                     }
                   >
-                    {elem.title}
+                    {orderDetails.title}
                   </span>
                 </td>
+
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {elem.bookingdate }
+                {orderDetails.bookingdate}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> {elem.address} 222
+                  <i className="fas fa-circle text-orange-500 mr-2"></i> {orderDetails.address} 
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {elem.customer}
+                {orderDetails.customer}
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                  <TableDropdown id={elem.id} props =  {elem} />
+                <button  className="bg-green-500 text-white active:bg-green-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1" type="button" style={{"transition": "all .15s ease"}} onClick={(e) => updateOrder(e)}>
+  Update
+</button>
+                </td>
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+                <button className="bg-red-500 text-white active:bg-red-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1" type="button" style={{"transition": "all .15s ease"}} onClick={(e) => deleteThisOrder(e)}>
+  Delete
+</button>
                 </td>
               </tr>
-              ))}
+           
               
             </tbody>
           </table>
@@ -143,10 +182,10 @@ export default function CardTable({ color , props}) {
   );
 }
 
-CardTable.defaultProps = {
+OrderDetailsTable.defaultProps = {
   color: "light",
 };
 
-CardTable.propTypes = {
+OrderDetailsTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

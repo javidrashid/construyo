@@ -6,11 +6,11 @@ import { useRequireAuth } from 'hooks/useRequireAuth';
 import { db } from '../../config/firebase';
 // components
 
-import CardTable from "components/Cards/CardTable.js";
+import CardTable from "components/Cards/CardTable";
 
 // layout for page
 
-import Admin from "layouts/Admin.js";
+import Admin from "layouts/Admin";
 import LoginForm from "components/Forms/LoginForm";
 
 import { useRouter } from 'next/router';

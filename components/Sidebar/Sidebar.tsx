@@ -3,8 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 
-import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
+import UserDropdown from "components/Dropdowns/UserDropdown";
 
 import {useAuth} from "../../hooks/useAuth"; 
 export default function Sidebar() {

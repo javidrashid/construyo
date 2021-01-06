@@ -91,9 +91,9 @@ const IndexDropdown = () => {
         >
           Adminstration
         </span>
-        <Link href="/auth/login">
+        <Link href="/login">
           <a
-            href="#pablo"
+            href=""
             className={
               "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
             }
@@ -101,9 +101,9 @@ const IndexDropdown = () => {
             Login
           </a>
         </Link>
-        <Link href="/auth/register">
+        <Link href="/register">
           <a
-            href="#pablo"
+            href="/"
             className={
               "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
             }
