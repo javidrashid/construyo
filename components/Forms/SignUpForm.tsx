@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { auth } from 'config/firebase';
+//import { auth } from 'config/firebase';
 import { useAuth } from '../../hooks/useAuth';
 import { useRouter } from 'next/router';
 
@@ -38,7 +38,7 @@ const SignUpForm = () => {
        type="text"
        name="name"
        ref={register({
-        required: 'Please enter an name',      
+        required: 'Please enter a name',      
        })}
       />
       {errors.name && (

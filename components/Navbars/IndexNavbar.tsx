@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 // components
 
-import IndexDropdown from "components/Dropdowns/IndexDropdown";
+//import IndexDropdown from "components/Dropdowns/IndexDropdown";
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -38,7 +38,7 @@ export default function Navbar(props) {
            
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
-                <IndexDropdown />
+                {/* <IndexDropdown /> */}
               </li>
               <li className="flex items-center">
                 <a

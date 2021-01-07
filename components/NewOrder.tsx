@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import DatePicker from "react-datepicker";
+import {DatePicker} from "react-datepicker";
 import {useRouter} from "next/router";
 
 import "react-datepicker/dist/react-datepicker.css";

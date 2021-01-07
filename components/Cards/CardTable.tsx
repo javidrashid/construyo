@@ -2,9 +2,8 @@ import React , { useState, useEffect } from "react";
 
 import { db } from "../../config/firebase";
 import PropTypes from "prop-types";
-// components
 
-import TableDropdown from "components/Dropdowns/TableDropdown";
+import TableDropdown from "../../components/Dropdowns/TableDropdown";
 
 export default function CardTable({ color , props}) {
   const [orders, setOrders] = useState([]);
@@ -13,13 +12,14 @@ export default function CardTable({ color , props}) {
     db
       .collection('orders')
       .onSnapshot(snap => { 
-        const orders = snap.docs.map(order => ({
+        const orders = snap.docs.map(order => ({ 
           id: order.id,
           title: order.data().title,
           address : order.data().address,
           bookingdate : order.data().bookingdate,
           customer : order.data().customer
         }));
+        console.log('Orders are', orders);
         setOrders(orders);
       });
   }, []);

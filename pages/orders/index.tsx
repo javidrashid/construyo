@@ -6,7 +6,7 @@ import { useRequireAuth } from 'hooks/useRequireAuth';
 import { db } from '../../config/firebase';
 // components
 
-import CardTable from "components/Cards/CardTable";
+import CardTable from "../../components/Cards/CardTable";
 
 // layout for page
 
