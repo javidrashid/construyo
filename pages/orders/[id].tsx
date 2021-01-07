@@ -16,7 +16,7 @@ import { OrderDetailsComponent } from "components/OrderDetailsComponent";
 
 import CardTable from "components/cards/CardTable";
 
-import OrderDetailsTable from "components/cards/OrderDetailsTable";
+import OrderDetailsTable from "../../components/cards/OrderDetailsTable";
 
 
 const OrderDetails = () => { 
