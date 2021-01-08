@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import { OrderDetailsComponent } from "components/OrderDetailsComponent";
 
 
-import OrderDetailsTable from "components/cards/OrderDetailsTable";
+import OrderDetailsTable from "components/Cards/OrderDetailsTable";
 
 
 const OrderDetails = () => { 
