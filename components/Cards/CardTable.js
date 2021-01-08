@@ -1,31 +1,28 @@
-import React , { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { db } from "../../config/firebase";
 import PropTypes from "prop-types";
 // components
 
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import TableDropdown from "components/Dropdowns/TableDropdown";
 
-export default function CardTable({ color , props}) {
+export default function CardTable({ color, props }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    db
-      .collection('orders')
-      .onSnapshot(snap => { 
-        const orders = snap.docs.map(order => ({
-          id: order.id,
-          title: order.data().title,
-          address : order.data().address,
-          bookingdate : order.data().bookingdate,
-          customer : order.data().customer
-        }));
-        setOrders(orders);
-      });
+    db.collection("orders").onSnapshot((snap) => {
+      const orders = snap.docs.map((order) => ({
+        id: order.id,
+        title: order.data().title,
+        address: order.data().address,
+        bookingdate: order.data().bookingdate,
+        customer: order.data().customer,
+      }));
+      setOrders(orders);
+    });
   }, []);
 
-  console.log('orders are 1' , orders);
-
+  console.log("orders are 1", orders);
 
   return (
     <>
@@ -94,7 +91,7 @@ export default function CardTable({ color , props}) {
                 >
                   Address
                 </th>
-               
+
                 <th
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
@@ -106,35 +103,34 @@ export default function CardTable({ color , props}) {
               </tr>
             </thead>
             <tbody>
-              {orders.map(elem => (
+              {orders.map((elem) => (
                 <tr>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
-             
-                  <span
-                    className={
-                      "ml-3 font-bold " +
-                      +(color === "light" ? "text-gray-700" : "text-white")
-                    }
-                  >
-                    {elem.title}
-                  </span>
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {elem.bookingdate }
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> {elem.address} 222
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {elem.customer}
-                </td>
-                
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                  <TableDropdown id={elem.id} props =  {elem} />
-                </td>
-              </tr>
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
+                    <span
+                      className={
+                        "ml-3 font-bold " +
+                        +(color === "light" ? "text-gray-700" : "text-white")
+                      }
+                    >
+                      {elem.title}
+                    </span>
+                  </td>
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                    {elem.bookingdate}
+                  </td>
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                    <i className="fas fa-circle text-orange-500 mr-2"></i>{" "}
+                    {elem.address} 222
+                  </td>
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                    {elem.customer}
+                  </td>
+
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+                    <TableDropdown id={elem.id} props={elem} />
+                  </td>
+                </tr>
               ))}
-              
             </tbody>
           </table>
         </div>

@@ -14,7 +14,6 @@ import Admin from "layouts/Admin.js";
 import { useRouter } from 'next/router';
 import { OrderDetailsComponent } from "components/OrderDetailsComponent";
 
-import CardTable from "components/cards/CardTable";
 
 import OrderDetailsTable from "components/cards/OrderDetailsTable";
 

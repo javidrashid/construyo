@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { db } from '../../config/firebase';
 
-const NotificationDropdown = (props) => {
+const TableDropdown = (props) => {
   // dropdown props
   console.log('TableDropDown Props', props);
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
@@ -84,4 +84,4 @@ const NotificationDropdown = (props) => {
   );
 };
 
-export default NotificationDropdown;
+export default TableDropdown;
