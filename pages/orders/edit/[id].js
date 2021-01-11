@@ -14,7 +14,7 @@ const OrderEdit = () => {
   const auth = useRequireAuth();
   const router = useRouter();
   const {id} = router.query;
-  
+    
   if (!auth.user)  {
     return null;
   }

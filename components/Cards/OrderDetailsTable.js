@@ -4,6 +4,7 @@ import { db } from "../../config/firebase";
 import PropTypes from "prop-types";
 
 import { useRouter } from 'next/router';
+import { Obj } from "@popperjs/core";
 
 
 
@@ -12,16 +13,19 @@ export default function OrderDetailsTable({ color , props}) {
 
 
   const router = useRouter();
-  const { id } = router.query;
-
-  const [orderDetails, setOrderDetails] = useState('');
+  const  { id }= router.query;
+  const [orderDetails, setOrderDetails] = useState({});
   var docRef = db.collection("orders").doc(id);
+
 
   useEffect(() => {
     docRef.get().then(function (doc) {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
-        setOrderDetails(doc.data())
+        if(doc.data()) {
+           setOrderDetails(doc.data())
+           
+        }
+         
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -147,18 +151,18 @@ export default function OrderDetailsTable({ color , props}) {
                       +(color === "light" ? "text-gray-700" : "text-white")
                     }
                   >
-                    {orderDetails.title}
+                    {orderDetails["title"]}
                   </span>
                 </td>
 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {orderDetails.bookingdate}
+                {orderDetails["bookingdate"]}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> {orderDetails.address} 
+                  <i className="fas fa-circle text-orange-500 mr-2"></i> {orderDetails["address"]} 
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {orderDetails.customer}
+                {orderDetails["customer"]}
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
@@ -172,8 +176,6 @@ export default function OrderDetailsTable({ color , props}) {
 </button>
                 </td>
               </tr>
-           
-              
             </tbody>
           </table>
         </div>
