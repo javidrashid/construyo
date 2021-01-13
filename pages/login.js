@@ -13,10 +13,9 @@ import { useRouter } from "next/router";
 export default function Login() {
   const router = useRouter();
   const handleSignInWithGoogle = (e) => {
-    alert('ggg');
+   console.log('Invoking Login with Google...')
     var provider = google_auth.addScope('https://www.googleapis.com/auth/contacts.readonly');
     auth.signInWithPopup(provider).then( () => {
-      alert('You are signed In');
       router.push('/orders')
     })
     .catch(err => {
@@ -29,7 +28,7 @@ export default function Login() {
       router.push('/orders')
     })
     .catch(() => {
-      alert('Error Signing in with Github')
+      alert('There is an error signing up with Github most likely due to mis configuration or permission denied...')
     })
   }
   return (

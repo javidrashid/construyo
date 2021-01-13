@@ -49,9 +49,6 @@ export default function OrderDetailsTable({ color , props}) {
     router.push(`/orders/`);
 
   }
-
-
-
   return (
     <>
       <div
@@ -158,13 +155,18 @@ export default function OrderDetailsTable({ color , props}) {
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 {orderDetails["bookingdate"]}
                 </td>
+              
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> {orderDetails["address"]} 
+                {orderDetails["name"]} <br/> 
+                {orderDetails["phone"]} <br/> 
+                {orderDetails["email"]}  
                 </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {orderDetails["customer"]}
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs font-bold whitespace-no-wrap p-4 text-orange-500">
+                 {orderDetails["city"]}
+                 {orderDetails["country"]} <br />
+                 {orderDetails["street"]} <br />
+                 {orderDetails["zip"]} 
                 </td>
-                
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                 <button  className="bg-green-500 text-white active:bg-green-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1" type="button" style={{"transition": "all .15s ease"}} onClick={(e) => updateOrder(e)}>
   Update

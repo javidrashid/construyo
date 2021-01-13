@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from 'next/link';
 // layout for page
 
 import Auth from "layouts/Auth";
@@ -54,9 +54,23 @@ export default function Register() {
                 
               </div>
             </div>
+            <div className="flex flex-wrap mt-6 relative">
+              
+              <div className="w-1/2">
+                <Link href="/login">
+                  <a href="#" className="text-gray-300">
+                    <small>I need to Log In</small>
+                  </a>
+                </Link>
+              </div>
+            </div>  
           </div>
+
+          
         </div>
+        
       </div>
+      
     </>
   );
 }

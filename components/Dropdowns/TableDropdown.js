@@ -21,7 +21,7 @@ const NotificationDropdown = (props) => {
   };
 
   const deleteThisOrder = (e , id) => {
-    confirm('Sure') ? 
+    confirm('Are you Sure, Need to implement a notification service here...') ? 
     db.collection('orders').doc(id).delete().then(function() {
       console.log("Document successfully deleted!");
     })

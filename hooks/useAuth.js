@@ -98,7 +98,6 @@ const useAuthProvider = () => {
             });
     };
     const signOut = () => {
-        alert('Calling Sign out');
         return auth.signOut().then(() => {
             setUser(false);
             router.push('/login');

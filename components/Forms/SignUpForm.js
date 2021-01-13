@@ -15,7 +15,6 @@ const SignUpForm = () => {
  
  const onSubmit = (data) => {
   return auth.signUp(data).then((user) => {
-     debugger;
    console.log(user);
    if(user.uid !== "")  {
       router.push('/login')
@@ -113,6 +112,7 @@ const SignUpForm = () => {
        </button>
       </span>
      </div>
+
     </form>
    );
   

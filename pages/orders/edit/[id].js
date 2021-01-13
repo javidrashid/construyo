@@ -20,10 +20,10 @@ const OrderEdit = () => {
   }
 
   if (auth.user)  {
-      alert('You are an authorised user');
+      console.log('You are an authorised user');
   }
   else {
-    alert('You are an an UNauthorised user');
+    console.log('You are an an UNauthorised user');
   }
   return (
     <OrderDetailsEditComponent id={id}/>
