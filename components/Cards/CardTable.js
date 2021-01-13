@@ -116,7 +116,7 @@ export default function CardTable({ color , props}) {
             <tbody>
               {orders.map(elem => (
                 <tr key={elem.id}>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left items-center">
              
                   <span
                     className={

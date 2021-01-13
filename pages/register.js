@@ -6,7 +6,32 @@ import Auth from "layouts/Auth";
 
 import SignUpForm from 'components/Forms/SignUpForm'
 import IndexNavbar from 'components/Navbars/IndexNavbar';
+import { auth, github_auth, google_auth } from "../config/firebase";
+import { useRouter } from "next/router";
+
+
 export default function Register() {
+  const router = useRouter();
+  const handleSignInWithGoogle = (e) => {
+   console.log('Invoking Login with Google...')
+    var provider = google_auth.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    auth.signInWithPopup(provider).then( () => {
+      router.push('/orders')
+    })
+    .catch(err => {
+       console.log(err);
+    })
+  }
+
+  const handleSignInWithGithub = (e) => {
+    return auth.signInWithPopup(github_auth).then(() => {
+      router.push('/orders')
+    })
+    .catch(() => {
+      alert('There is an error signing up with Github most likely due to mis configuration or permission denied...')
+    })
+  }
+
   return (
     <>
     <IndexNavbar />
@@ -22,8 +47,9 @@ export default function Register() {
                 </div>
                 <div className="btn-wrapper text-center">
                   <button
-                    className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                    className="bg-white active:bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
+                    onClick={(e) => handleSignInWithGithub(e)}
                   >
                     <img
                       alt="..."
@@ -33,8 +59,9 @@ export default function Register() {
                     Github
                   </button>
                   <button
-                    className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                    className="bg-white active:bg-gray-100 text-gray-800  px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
+                    onClick={(e) => handleSignInWithGoogle(e)}
                   >
                     <img
                       alt="..."
