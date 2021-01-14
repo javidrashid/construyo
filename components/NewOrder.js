@@ -23,9 +23,7 @@ const NewOrder = () => {
   const [bookingdate, setBookingdate] = useState("");
   const router = useRouter();
 
-  const onSubmit = (e) => {
-    console.log("bookingdate", startDate.toString());
-    e.preventDefault();
+  const onSubmit = (data) => {
     setBookingdate();
 
     db.collection("orders").add({
@@ -94,8 +92,8 @@ const NewOrder = () => {
         />
       </div>
       
-      <div className="customer-info flex">
-        <div className="relative w-1/3 mb-3 p-4 pl-0">
+      <div className="customer-info  sm:block md:flex">
+        <div className="relative mb-3 p-4 pl-0 sm:w-full md:w-1/3 lg:w-1/3">
           <label
             className="block uppercase text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-password"
@@ -123,7 +121,7 @@ const NewOrder = () => {
             )}
         
         </div>
-        <div className="relative w-1/3 p-4 mb-3">
+        <div className="relative mb-3 p-4 pl-0 sm:w-full md:w-1/3 lg:w-1/3">
           <label
             className="block uppercase text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-password"
@@ -151,7 +149,7 @@ const NewOrder = () => {
             )}
           
         </div>
-        <div className="relative w-1/3 mb-3 p-4 pr-0">
+        <div className="relative mb-3 p-4 pl-0 sm:w-full md:w-1/3 lg:w-1/3">
           <label
             className="block uppercase text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-password"
@@ -179,8 +177,8 @@ const NewOrder = () => {
             )}
         </div>
       </div>
-      <div className="address-container flex">
-        <div className="relative w-1/4 mb-3 p-4  pl-0">
+      <div className="address-container sm:block md:flex">
+        <div className="relative mb-3 p-4 pl-0 sm:w-full md:w-1/3 lg:w-1/3">
           <label
             className="block uppercase text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-password"
@@ -207,7 +205,7 @@ const NewOrder = () => {
               </div>
             )}
         </div>
-        <div className="relative w-1/4 mb-3 p-4">
+        <div className="relative mb-3 p-4 pl-0 sm:w-full md:w-1/3 lg:w-1/3">
           <label
             className="block uppercase text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-password"
@@ -234,7 +232,7 @@ const NewOrder = () => {
               </div>
             )}
         </div>
-        <div className="relative w-1/4 mb-3 p-4">
+        <div className="relative mb-3 p-4 pl-0 sm:w-full md:w-1/3 lg:w-1/3">
           <label
             className="block uppercase text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-password"
@@ -262,7 +260,7 @@ const NewOrder = () => {
             )}
          
         </div>
-        <div className="relative w-1/4 mb-3 p-4 pr-0">
+        <div className="relative mb-3 p-4 pl-0 sm:w-full md:w-1/3 lg:w-1/3">
           <label
             className="block uppercase text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-password"
@@ -277,8 +275,6 @@ const NewOrder = () => {
             name="zip"
             ref={register({
               required: 'Please enter a Zip Code',
-              min: 5,
-              max: 6,
               })}
             />
             {errors.zip && (
